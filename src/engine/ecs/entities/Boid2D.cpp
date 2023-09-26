@@ -3,7 +3,6 @@
 //
 
 #include "Boid2D.h"
-Boid2D::Boid2D(int id, float x, float y) : Entity(id) {
-    rigidbody = {0, {x, y}, {0, 0.01}};
-    sprite = {0};
+Boid2D::Boid2D(int id, float x, float y, int z) : Entity(id) {
+    rigidbody = {0, {x, y, z}, {0, 0.01}};
 }

@@ -8,6 +8,7 @@
 struct PositionComponent {
     float x;
     float y;
+    int z;
 };
 
 #endif //KLEINOD_POSITIONCOMPONENT_H

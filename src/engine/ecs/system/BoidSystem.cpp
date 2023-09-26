@@ -5,10 +5,19 @@
 #include "BoidSystem.h"
 #include <random>
 
+BoidSystem::BoidSystem(int id) : System(id) {}
+
 // Iterates through Boids and applies the 3 flock rules and some biases
 void BoidSystem::handleBoids(...) { //TODO: Make use of variable length method to include multiple biases
+    //separation
 
+    //alignment
+
+    //cohesion
+
+    //additional Biases
 }
+
 // Creates {amount} boids with a random position and 0 velocity
 void BoidSystem::init(int amount) {
     float x{};
@@ -19,16 +28,30 @@ void BoidSystem::init(int amount) {
     for (int i = 0; i < amount; i++) {
         x= dist(mt);
         y= dist(mt);
-        auto *boid = new Boid2D(0, x, y);
-        boids.push_back(*boid);
+        auto *boid = new Boid2D(0, x, y,0);
+        boids.push_back(boid);
     }
 }
 
-
-void BoidSystem::AddVelocity(Boid2D boid2D, float x, float y)
-{
-    boid2D.rigidbody.velocity.x += x;
-    boid2D.rigidbody.velocity.y += y;
+void BoidSystem::initValues(float velocityModifier, float separationModifier, float alignmentModifier, float cohesionModifier){
+    this->velocityMod = velocityModifier;
+    this->separationMod = separationModifier;
+    this->alignmentMod = alignmentModifier;
+    this->cohesionMod = cohesionModifier;
 }
 
-BoidSystem::BoidSystem(int id) : System(id) {}
+
+//Boid2D functions
+void BoidSystem::addVelocity(int boid2Did, float x, float y)
+{
+    this->boids[boid2Did]->rigidbody.velocity.x += x;
+    this->boids[boid2Did]->rigidbody.velocity.x += x;
+}
+
+void BoidSystem::setViewRange(int boid2Did, float range) {
+    this->boids[boid2Did]->viewRange = range;
+}
+
+void BoidSystem::setNeighborRange(int boid2Did, float range) {
+    this->boids[boid2Did]->neighborRange = range;
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Kleinod",
+  "version": "1.0.0",
+  "scripts": {
+    "preprocess": "node js/preprocess.js"
+  },
+  "dependencies": {
+  }
+}

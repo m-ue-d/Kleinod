@@ -2,19 +2,17 @@
 // Created by Admin on 24.08.2023.
 //
 
-#ifndef KLEINOD_BOID2D_H
-#define KLEINOD_BOID2D_H
+#pragma once
 #include "RigidbodyComponent.h"
 #include "Entity.h"
 #include "SpriteComponent.h"
 
 
-class Boid2D : public Entity{
+struct Boid2D : public Entity{
     public:
+        float neighborRange = 1.0f;
+        float viewRange = 10.0f;
         RigidbodyComponent rigidbody;
-        SpriteComponent sprite;
-        Boid2D(int id, float x, float y);
+        SpriteComponent sprite = {0};
+        Boid2D(int id, float x, float y, int z);
 };
-
-
-#endif //KLEINOD_BOID2D_H
