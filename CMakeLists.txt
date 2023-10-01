@@ -55,8 +55,8 @@ set(SOURCES
         include/engine/ecs/system/core/PhysicsSystem.h
         include/engine/ecs/components/graphics/Camera.h
         src/engine/ecs/system/core/PhysicsSystem.cpp
-        include/engine/ecs/system/core/quadtree.h
-        src/engine/ecs/system/core/quadtree.cpp)
+        include/engine/ecs/system/core/Quadtree.h
+        src/engine/ecs/system/core/Quadtree.cpp)
 
 add_executable(Kleinod main.cpp ${SOURCES})
 
