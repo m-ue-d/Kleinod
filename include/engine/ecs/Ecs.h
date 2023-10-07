@@ -9,12 +9,14 @@
 #include "System.h"
 #include "PhysicsSystem.h"
 #include "GraphicsSystem.h"
+#include "PositionSystem.h"
 
 class Ecs{
     public:
         static Ecs &shared_instance() {static Ecs ecs; return ecs;}
         std::vector<Entity*> entities;
         std::vector<System*> systems;
+        PositionSystem* positionSystem;
         PhysicsSystem* physicsSystem;
         GraphicsSystem* graphicsSystem;
     private:

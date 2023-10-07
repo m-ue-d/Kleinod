@@ -1,26 +1,9 @@
 cmake_minimum_required(VERSION 3.21)
 project(Kleinod)
 
+find_package(SDL2 CONFIG REQUIRED)
+
 set(CMAKE_CXX_STANDARD 23)
-
-set(SDL_INCLUDE_DIR C:/Users/fabia/Desktop/DEV/libs/SDL2/include)
-set(SDL_LIB_DIR C:/Users/fabia/Desktop/DEV/libs/SDL2/lib/x64)
-
-include_directories(${SDL_INCLUDE_DIR})
-link_directories(${SDL_LIB_DIR})
-
-
-MACRO(HEADER_DIRECTORIES return_list)
-    FILE(GLOB_RECURSE new_list *.h)
-    SET(dir_list "")
-    FOREACH(file_path ${new_list})
-        GET_FILENAME_COMPONENT(dir_path ${file_path} PATH)
-        SET(dir_list ${dir_list} ${dir_path})
-    ENDFOREACH()
-    LIST(REMOVE_DUPLICATES dir_list)
-    SET(${return_list} ${dir_list})
-ENDMACRO()
-# TODO: Make Macro work =)
 
 include_directories(
         include/engine/ecs/components/physics
@@ -56,8 +39,17 @@ set(SOURCES
         include/engine/ecs/components/graphics/Camera.h
         src/engine/ecs/system/core/PhysicsSystem.cpp
         include/engine/ecs/system/core/Quadtree.h
-        src/engine/ecs/system/core/Quadtree.cpp)
+        src/engine/ecs/system/core/Quadtree.cpp
+        include/engine/ecs/system/core/PositionSystem.h)
 
 add_executable(Kleinod main.cpp ${SOURCES})
 
-target_link_libraries(${PROJECT_NAME} SDL2main SDL2)
+target_link_libraries(Kleinod
+        PRIVATE
+        SDL2::SDL2)
+
+target_link_libraries(Kleinod
+        PRIVATE
+        $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main>
+        $<IF:$<TARGET_EXISTS:SDL2::SDL2>,SDL2::SDL2,SDL2::SDL2-static>
+)

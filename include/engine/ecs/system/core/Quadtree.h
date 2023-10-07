@@ -8,13 +8,12 @@
 
 // The object, that is stored inside the tree
 struct Node{
-    PositionComponent* pos;
+    PositionComponent pos;
     Entity* entity;
-    explicit Node(PositionComponent* _pos);
+    explicit Node(PositionComponent p, Entity* e);
 };
 
-struct Quadtree{
-    //TODO implement
+struct Quadtree{    //TODO-Future: Maybe test the quadtree by visually representing it's structure as a test-function!
     //boundary
     PositionComponent topLeft;
     PositionComponent botRight;
@@ -30,7 +29,7 @@ struct Quadtree{
     public:
         Quadtree();
         Quadtree(PositionComponent topL, PositionComponent botR);
-        void insert(Node*);
-        Node* search(PositionComponent);
-        bool inBoundary(PositionComponent);
+        void insert(Node *n);
+        Node* search(PositionComponent p);
+        bool inBoundary(PositionComponent p);
 };

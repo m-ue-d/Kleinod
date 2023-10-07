@@ -10,11 +10,9 @@
 #include "RigidbodyComponent.h"
 
 class PhysicsSystem : public System{
+    std::vector<RigidbodyComponent*> rigidbodies;
     public:
         float gravity = 0;
-        void doPhysics(); //PhysicsUpdate (collisions, velocity updates, dampening, weight, position)
-
-    private:
-        std::vector<RigidbodyComponent*> rigidbodies;
+        void doPhysics(); //PhysicsUpdate (collisions, velocity updates, dampening, weight)
 };
 

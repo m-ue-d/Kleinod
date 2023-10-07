@@ -4,5 +4,5 @@
 
 #include "Boid2D.h"
 Boid2D::Boid2D(int id, float x, float y, int z) : Entity(id) {
-    rigidbody = {0, {x, y, z}, {0, 0.01}};
+    rigidbody = {0, {0, 0.01}};
 }
