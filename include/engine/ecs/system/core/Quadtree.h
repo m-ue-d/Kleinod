@@ -5,13 +5,7 @@
 #pragma once
 #include "PositionComponent.h"
 #include "Entity.h"
-
-// The object, that is stored inside the tree
-struct Node{
-    PositionComponent pos;
-    Entity* entity;
-    explicit Node(PositionComponent p, Entity* e);
-};
+#include <vector>
 
 struct Quadtree{    //TODO-Future: Maybe test the quadtree by visually representing it's structure as a test-function!
     //boundary
@@ -19,7 +13,7 @@ struct Quadtree{    //TODO-Future: Maybe test the quadtree by visually represent
     PositionComponent botRight;
 
     //Node
-    Node* node;
+    Entity* node;
 
     //Quads
     Quadtree* nw;
@@ -29,7 +23,8 @@ struct Quadtree{    //TODO-Future: Maybe test the quadtree by visually represent
     public:
         Quadtree();
         Quadtree(PositionComponent topL, PositionComponent botR);
-        void insert(Node *n);
-        Node* search(PositionComponent p);
-        bool inBoundary(PositionComponent p);
+        void put(Entity *n);
+        Entity* get(PositionComponent p);
+        bool inBounds(PositionComponent p);
+        std::vector<Entity*> getNeighbors(PositionComponent p, float radius);
 };
