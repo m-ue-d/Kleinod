@@ -6,7 +6,9 @@
 #include "Quadtree.h"
 class PositionSystem : public System{
     //TODO: Fully define & Implement
-    Quadtree quadtree;
     public:
         PositionComponent posOf(Entity* e);
+
+    private:
+        Quadtree quadtree;
 };

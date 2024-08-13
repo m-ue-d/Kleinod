@@ -5,10 +5,25 @@
 #include "Ecs.h"
 #include "BoidSystem.h"
 
-void Ecs::system_init() {
-    auto *boidSystem = new BoidSystem(0);
-    boidSystem->init(10);
-    systems.push_back(boidSystem);
+void Ecs::systems_init() {
+    //init core systems
+    //TODO: complete
+    auto cam = new Camera(PositionComponent(0, 0, 0));
+    graphicsSystem = new GraphicsSystem(cam);
 }
 
-Ecs::Ecs() = default;
+Ecs::Ecs() {
+    systems_init();
+}
+
+Ecs::~Ecs() {
+    // Clean up entities
+    for (Entity* entity : entities) {
+        delete entity;
+    }
+
+    // Clean up systems
+    delete positionSystem;
+    delete physicsSystem;
+    delete graphicsSystem;
+}

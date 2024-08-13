@@ -5,7 +5,13 @@
 #pragma once
 #include "PositionComponent.h"
 
+//TODO: Implement a perspective Camera
 struct Camera{
-    PositionComponent position;
-    //TODO: Implement a perspective Camera
+    public:
+        Camera(const PositionComponent& position);
+        ~Camera();
+
+    private:
+        PositionComponent position;
 };
+

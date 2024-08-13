@@ -13,8 +13,8 @@ topLeft(topL),botRight(botR), nw(nullptr), no(nullptr), sw(nullptr), so(nullptr)
 
 //Description: checks if the desired PositionComponent is inside the Quadtrees bounds (area and layer)
 bool Quadtree::inBounds(PositionComponent p) {
-    return (p.x >= topLeft.x && p.x <= botRight.x && p.y >= topLeft.y && p.y <= botRight.y
-    && (p.z == topLeft.z || p.z == botRight.z));
+    return (p.getX() >= topLeft.getX() && p.getX() <= botRight.getX() && p.getY() >= topLeft.getY() && p.getY() <= botRight.getY()
+    && (p.getZ() == topLeft.getZ() || p.getZ() == botRight.getZ()));
 }
 
 //Description: inserts the desired node into the Quadtree
@@ -24,20 +24,20 @@ void Quadtree::put(Entity* n) {
         return;
 
     //check if the quad is already at the smallest area possible (unit area quad)
-    if (botRight.x - topLeft.y <= 1 && botRight.y - topLeft.y <= 1) {
+    if (botRight.getX() - topLeft.getY() <= 1 && botRight.getY() - topLeft.getY() <= 1) {
         if(node == nullptr)
             node = n;
         return;
     }
 
-    if ((topLeft.x + botRight.x) / 2 >= node->position.x) {
+    if ((topLeft.getX() + botRight.getX()) / 2 >= node->position.getX()) {
         //indicates nw
-        if ((topLeft.y + botRight.y) / 2 >= node->position.y) {
+        if ((topLeft.getY() + botRight.getY()) / 2 >= node->position.getY()) {
             if (nw == nullptr)
                 nw = new Quadtree(
-                        PositionComponent(topLeft.x, topLeft.y),
-                        PositionComponent((topLeft.x + botRight.x) / 2,
-                              (topLeft.y + botRight.y) / 2));
+                        PositionComponent(topLeft.getX(), topLeft.getY()),
+                        PositionComponent((topLeft.getX() + botRight.getX()) / 2,
+                              (topLeft.getY() + botRight.getY()) / 2));
             nw->put(node);
         }
 
@@ -45,22 +45,22 @@ void Quadtree::put(Entity* n) {
         else {
             if (sw == nullptr)
                 sw = new Quadtree(
-                        PositionComponent(topLeft.x,
-                              (topLeft.y + botRight.y) / 2),
-                        PositionComponent((topLeft.x + botRight.x) / 2,
-                              botRight.y));
+                        PositionComponent(topLeft.getX(),
+                              (topLeft.getY() + botRight.getY()) / 2),
+                        PositionComponent((topLeft.getX() + botRight.getX()) / 2,
+                              botRight.getY()));
             sw->put(node);
         }
     }
     else {
         //indicates no
-        if ((topLeft.y + botRight.y) / 2 >= node->position.y) {
+        if ((topLeft.getY() + botRight.getY()) / 2 >= node->position.getY()) {
             if (no == nullptr)
                 no = new Quadtree(
-                        PositionComponent((topLeft.x + botRight.x) / 2,
-                              topLeft.y),
-                        PositionComponent(botRight.x,
-                              (topLeft.y + botRight.y) / 2));
+                        PositionComponent((topLeft.getX() + botRight.getX()) / 2,
+                              topLeft.getY()),
+                        PositionComponent(botRight.getX(),
+                              (topLeft.getY() + botRight.getY()) / 2));
             no->put(node);
         }
 
@@ -68,9 +68,9 @@ void Quadtree::put(Entity* n) {
         else {
             if (so == nullptr)
                 so = new Quadtree(
-                        PositionComponent((topLeft.x + botRight.x) / 2,
-                              (topLeft.y + botRight.y) / 2),
-                        PositionComponent(botRight.x, botRight.y));
+                        PositionComponent((topLeft.getX() + botRight.getX()) / 2,
+                              (topLeft.getY() + botRight.getY()) / 2),
+                        PositionComponent(botRight.getX(), botRight.getY()));
             so->put(node);
         }
     }
@@ -85,9 +85,9 @@ Entity* Quadtree::get(PositionComponent p) {
     if (node != nullptr)
         return node;
 
-    if ((topLeft.x + botRight.x) / 2 >= p.x) {
+    if ((topLeft.getX() + botRight.getX()) / 2 >= p.getX()) {
         //indicates nw
-        if ((topLeft.y + botRight.y) / 2 >= p.y) {
+        if ((topLeft.getY() + botRight.getY()) / 2 >= p.getY()) {
             if (nw == nullptr)
                 return nullptr;
             return nw->get(p);
@@ -102,7 +102,7 @@ Entity* Quadtree::get(PositionComponent p) {
     }
     else {
         //indicates no
-        if ((topLeft.y + botRight.y) / 2 >= p.y) {
+        if ((topLeft.getY() + botRight.getY()) / 2 >= p.getY()) {
             if (no == nullptr)
                 return nullptr;
             return no->get(p);
@@ -121,8 +121,8 @@ std::vector<Entity*> Quadtree::getNeighbors(PositionComponent p, float radius) {
     std::vector<Entity*> neighbors;
 
     //calculate the bounds of the query area based on position p and radius
-    PositionComponent queryTopLeft(p.x - radius, p.y - radius, p.z);
-    PositionComponent queryBotRight(p.x + radius, p.y + radius, p.z);
+    PositionComponent queryTopLeft(p.getX() - radius, p.getY() - radius, p.getZ());
+    PositionComponent queryBotRight(p.getX() + radius, p.getY() + radius, p.getZ());
 
     //check if query area intersects with Quadtree bounds
     if (!intersects(queryTopLeft, queryBotRight, topLeft, botRight))
@@ -148,11 +148,11 @@ void Quadtree::getNeighborsRecursive(PositionComponent p, float radius, std::vec
 
 bool Quadtree::intersects(PositionComponent tl1, PositionComponent br1, PositionComponent tl2, PositionComponent br2) {
     //check if two rectangles defined by their top-left and bottom-right corners intersect
-    return !(tl1.x > br2.x || br1.x < tl2.x || tl1.y > br2.y || br1.y < tl2.y || tl1.z != tl2.z || br1.z != br2.z);
+    return !(tl1.getX() > br2.getX() || br1.getX() < tl2.getX() || tl1.getY() > br2.getY() || br1.getY() < tl2.getY() || tl1.getZ() != tl2.getZ() || br1.getZ() != br2.getZ());
 }
 
 bool Quadtree::inCircle(PositionComponent pos, PositionComponent center, float radius) {
     //check if a position component is within a circular area defined by center and radius
-    float distanceSquared = pow(pos.x - center.x, 2) + pow(pos.y - center.y, 2);
+    float distanceSquared = pow(pos.getX() - center.getX(), 2) + pow(pos.getY() - center.getY(), 2);
     return distanceSquared <= pow(radius, 2);
 }

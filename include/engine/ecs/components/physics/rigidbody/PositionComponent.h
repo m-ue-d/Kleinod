@@ -6,9 +6,19 @@
 #define KLEINOD_POSITIONCOMPONENT_H
 
 struct PositionComponent {
-    float x;
-    float y;
-    int z;
+    public:
+        PositionComponent(float x, float y, int z);
+        PositionComponent(float x, float y);
+        ~PositionComponent();
+
+        float getX() const { return x; }
+        float getY() const { return y; }
+        int getZ() const { return z; }
+
+    private:
+        float x;
+        float y;
+        int z;
 };
 
 #endif //KLEINOD_POSITIONCOMPONENT_H

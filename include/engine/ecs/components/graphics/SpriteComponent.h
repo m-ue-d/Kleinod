@@ -7,7 +7,9 @@
 
 struct SpriteComponent{
     public:
-        int id;
         SpriteComponent(int id);
         //TODO: size, rotation, invertX, invertY
+
+    private:
+        int id;
 };

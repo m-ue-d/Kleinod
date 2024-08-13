@@ -21,9 +21,12 @@ class Ecs{
         PositionSystem* positionSystem;
         PhysicsSystem* physicsSystem;
         GraphicsSystem* graphicsSystem;
+
+        ~Ecs();
+
     private:
         Ecs();
-        void system_init();
+        void systems_init();
         System* getSystem(int id);  //TODO: Implement
         Entity* getEntity(int id);  //TODO: Implement
         bool destroySystem(int id); //TODO: Implement
