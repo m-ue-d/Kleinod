@@ -14,8 +14,10 @@
 class Ecs{
     public:
         static Ecs &shared_instance() {static Ecs ecs; return ecs;}
+        //dynamic entities and systems
         std::vector<Entity*> entities;
         std::vector<System*> systems;
+        //core systems
         PositionSystem* positionSystem;
         PhysicsSystem* physicsSystem;
         GraphicsSystem* graphicsSystem;

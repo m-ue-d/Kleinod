@@ -40,7 +40,8 @@ set(SOURCES
         src/engine/ecs/system/core/PhysicsSystem.cpp
         include/engine/ecs/system/core/Quadtree.h
         src/engine/ecs/system/core/Quadtree.cpp
-        include/engine/ecs/system/core/PositionSystem.h)
+        include/engine/ecs/system/core/PositionSystem.h
+)
 
 add_executable(Kleinod main.cpp ${SOURCES})
 

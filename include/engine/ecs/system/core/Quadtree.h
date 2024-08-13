@@ -7,7 +7,7 @@
 #include "Entity.h"
 #include <vector>
 
-struct Quadtree{    //TODO-Future: Maybe test the quadtree by visually representing it's structure as a test-function!
+struct Quadtree{
     //boundary
     PositionComponent topLeft;
     PositionComponent botRight;
@@ -27,4 +27,7 @@ struct Quadtree{    //TODO-Future: Maybe test the quadtree by visually represent
         Entity* get(PositionComponent p);
         bool inBounds(PositionComponent p);
         std::vector<Entity*> getNeighbors(PositionComponent p, float radius);
+        void getNeighborsRecursive(PositionComponent p, float radius, std::vector<Entity*>& neighbors);
+        bool intersects(PositionComponent tl1, PositionComponent br1, PositionComponent tl2, PositionComponent br2);
+        bool inCircle(PositionComponent pos, PositionComponent center, float radius);
 };

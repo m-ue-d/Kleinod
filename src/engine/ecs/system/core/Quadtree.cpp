@@ -117,10 +117,42 @@ Entity* Quadtree::get(PositionComponent p) {
     }
 }
 
-std::vector<Entity *> Quadtree::getNeighbors(PositionComponent p, float radius) {
-    //TODO: Implement
+std::vector<Entity*> Quadtree::getNeighbors(PositionComponent p, float radius) {
+    std::vector<Entity*> neighbors;
 
+    //calculate the bounds of the query area based on position p and radius
+    PositionComponent queryTopLeft(p.x - radius, p.y - radius, p.z);
+    PositionComponent queryBotRight(p.x + radius, p.y + radius, p.z);
 
+    //check if query area intersects with Quadtree bounds
+    if (!intersects(queryTopLeft, queryBotRight, topLeft, botRight))
+        return neighbors; //no intersection, return empty vector
 
-    return std::vector<Entity *>();
+    getNeighborsRecursive(p, radius, neighbors);
+
+    return neighbors;
+}
+
+void Quadtree::getNeighborsRecursive(PositionComponent p, float radius, std::vector<Entity*>& neighbors) {
+    //check if node intersects with the query area
+    if (node != nullptr && inCircle(node->position, p, radius)) {
+        neighbors.push_back(node);
+    }
+
+    //recursively search within child nodes
+    if (nw != nullptr) nw->getNeighborsRecursive(p, radius, neighbors);
+    if (no != nullptr) no->getNeighborsRecursive(p, radius, neighbors);
+    if (sw != nullptr) sw->getNeighborsRecursive(p, radius, neighbors);
+    if (so != nullptr) so->getNeighborsRecursive(p, radius, neighbors);
+}
+
+bool Quadtree::intersects(PositionComponent tl1, PositionComponent br1, PositionComponent tl2, PositionComponent br2) {
+    //check if two rectangles defined by their top-left and bottom-right corners intersect
+    return !(tl1.x > br2.x || br1.x < tl2.x || tl1.y > br2.y || br1.y < tl2.y || tl1.z != tl2.z || br1.z != br2.z);
+}
+
+bool Quadtree::inCircle(PositionComponent pos, PositionComponent center, float radius) {
+    //check if a position component is within a circular area defined by center and radius
+    float distanceSquared = pow(pos.x - center.x, 2) + pow(pos.y - center.y, 2);
+    return distanceSquared <= pow(radius, 2);
 }
