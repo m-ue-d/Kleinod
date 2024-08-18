@@ -5,5 +5,9 @@ It is supposed to be lightweight, easy to use and especially useful for layered 
 <h2 align="left">What's a layered sidescroller in your mind?</h1>
 A layered sidescroller is like any normal sidescroller, but has "3D" features in the shape of layers. Like a mixture of "Sonic the Hedgehog" and "Dwarf Fortress" if you want a direct example. 
 
-<h2 align="left">Why are you doing this to your psyche?</h2>
-I want to learn c++.
+<h2 align="left">Isn't this kind of useless?<</h2>
+It may seem that way for an outsider, but know these points:
+  
+- I want to properly learn C++.
+- I kind of like game dev.
+- This is a fun side project made for myself =)
