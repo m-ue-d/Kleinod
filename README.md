@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="logo.svg" width="200">
+</div>
+
 <h1 align="center">Kleinod</h1>
 <h2 align="left">What's so special about it?</h2>
 It is supposed to be lightweight, easy to use and especially useful for layered sidescrolleres. (Like some levels in <a href="https://www.nintendo.at/Spiele/Nintendo-Switch-Spiele/Super-Mario-Bros-Wonder-2404150.html">Mario Wonder</a>, where the level has some depth that the player can explore)
