@@ -11,6 +11,7 @@ int main(int argc, char *argv[])
     SDL_Surface *surface;
     SDL_Event event;
 
+    //do the following in the engine.cpp and init the engine!
     auto& graphicsSystem = Ecs::shared_instance().graphicsSystem;
     auto& positionSystem = Ecs::shared_instance().positionSystem;
 
@@ -19,7 +20,12 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    //TODO: Add test entities to positionSystem
+    //add test entities to positionSystem
+    //TODO: make an autoIdSystem of some sort
+    auto* e1 = new Entity(1);
+    auto* e2 = new Entity(3);
+    positionSystem->addEntity(e1);
+    positionSystem->addEntity(e2);
 
     bool running = true;
 

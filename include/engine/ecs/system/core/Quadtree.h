@@ -22,12 +22,13 @@ struct Quadtree{
     Quadtree* so;
     public:
         Quadtree();
-        Quadtree(PositionComponent topL, PositionComponent botR);
+        Quadtree(const PositionComponent& topL, const PositionComponent& botR);
         void put(Entity *n);
-        Entity* get(PositionComponent p);
-        bool inBounds(PositionComponent p);
-        std::vector<Entity*> getNeighbors(PositionComponent p, float radius);
-        void getNeighborsRecursive(PositionComponent p, float radius, std::vector<Entity*>& neighbors);
-        bool intersects(PositionComponent tl1, PositionComponent br1, PositionComponent tl2, PositionComponent br2);
-        bool inCircle(PositionComponent pos, PositionComponent center, float radius);
+        void remove(const PositionComponent& pos);
+        Entity* get(const PositionComponent& p);
+        bool inBounds(const PositionComponent& p);
+        std::vector<Entity*> getNeighbors(const PositionComponent& p, float radius) const;
+        void getNeighborsRecursive(PositionComponent p, float radius, std::vector<Entity*>& neighbors) const;
+        static bool intersects(const PositionComponent& tl1, const PositionComponent& br1, const PositionComponent& tl2, const PositionComponent& br2);
+        static bool inCircle(const PositionComponent& pos, const PositionComponent& center, float radius);
 };

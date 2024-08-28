@@ -13,3 +13,11 @@ struct Entity{
         explicit Entity(int id);
         Entity(int id,PositionComponent p);
 };
+
+struct EntityComparator {
+    int id;
+
+    bool operator()(const Entity& element) const {
+        return element.id == id;
+    }
+};

@@ -43,6 +43,11 @@ set(SOURCES
         include/engine/ecs/system/core/PositionSystem.h
         src/engine/ecs/system/core/GraphicsSystem.cpp
         src/engine/ecs/components/graphics/Camera.cpp
+        src/engine/engine.cpp
+        include/engine/engine.h
+        include/game/game.h
+        src/game/game.cpp
+        src/engine/ecs/system/core/PositionSystem.cpp
 )
 
 add_executable(Kleinod main.cpp ${SOURCES})

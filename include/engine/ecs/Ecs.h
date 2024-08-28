@@ -11,7 +11,7 @@
 #include "GraphicsSystem.h"
 #include "PositionSystem.h"
 
-class Ecs{
+class Ecs {
     public:
         static Ecs &shared_instance() {static Ecs ecs; return ecs;}
         //dynamic entities and systems
@@ -22,13 +22,14 @@ class Ecs{
         PhysicsSystem* physicsSystem;
         GraphicsSystem* graphicsSystem;
 
+        System * getSystem(int id);
+        Entity * getEntity(int id);
+
         ~Ecs();
 
     private:
         Ecs();
         void systems_init();
-        System* getSystem(int id);  //TODO: Implement
-        Entity* getEntity(int id);  //TODO: Implement
-        bool destroySystem(int id); //TODO: Implement
-        bool destroyEntity(int id); //TODO: Implement
+        bool destroySystem(int id);
+        bool destroyEntity(int id);
 };

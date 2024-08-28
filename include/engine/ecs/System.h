@@ -10,3 +10,11 @@ struct System{
         virtual ~System() = default;
         explicit System(int id);
 };
+
+struct SystemComparator {
+    int id;
+
+    bool operator()(const System& element) const {
+        return element.id == id;
+    }
+};
