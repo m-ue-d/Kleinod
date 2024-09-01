@@ -9,6 +9,6 @@
 //Description: Gives an entity the ability to have physical behavior inside the engine
 struct RigidbodyComponent {
     public:
-        float mass; //mass is used both for gravity and dampening features, as it is easier to implement that way
+        double mass; //mass is used both for gravity and dampening features, as it is easier to implement that way
         VelocityComponent velocity;
 };

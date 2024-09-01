@@ -22,10 +22,13 @@ int main(int argc, char *argv[])
 
     //add test entities to positionSystem
     //TODO: make an autoIdSystem of some sort
-    auto* e1 = new Entity(1);
-    auto* e2 = new Entity(3);
+    auto* e1 = new Entity(0);
+    e1->position = { 1,1, 0 };
+    auto* e2 = new Entity(0);
+    e2->position = { 100,100, 0 };
     positionSystem->addEntity(e1);
     positionSystem->addEntity(e2);
+    positionSystem->addEntity(graphicsSystem->getCamera());
 
     bool running = true;
 

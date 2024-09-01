@@ -7,17 +7,17 @@
 
 struct PositionComponent {
     public:
-        PositionComponent(float x, float y, int z);
-        PositionComponent(float x, float y);
+        PositionComponent(double x, double y, int z);
+        PositionComponent(double x, double y);
         ~PositionComponent();
 
-        float getX() const { return x; }
-        float getY() const { return y; }
+        double getX() const { return x; }
+        double getY() const { return y; }
         int getZ() const { return z; }
 
     private:
-        float x;
-        float y;
+        double x;
+        double y;
         int z;
 };
 

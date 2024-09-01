@@ -123,7 +123,7 @@ Entity* Quadtree::get(const PositionComponent& p) {
 }
 
 //TODO: maybe unused?
-std::vector<Entity*> Quadtree::getNeighbors(const PositionComponent& p, float radius) const {
+std::vector<Entity*> Quadtree::getNeighbors(const PositionComponent& p, double radius) const {
     std::vector<Entity*> neighbors;
 
     //calculate the bounds of the query area based on position p and radius
@@ -139,7 +139,7 @@ std::vector<Entity*> Quadtree::getNeighbors(const PositionComponent& p, float ra
     return neighbors;
 }
 
-void Quadtree::getNeighborsRecursive(PositionComponent p, float radius, std::vector<Entity*>& neighbors) const {
+void Quadtree::getNeighborsRecursive(PositionComponent p, double radius, std::vector<Entity*>& neighbors) const {
     //check if node intersects with the query area
     if (node != nullptr && inCircle(node->position, p, radius)) {
         neighbors.push_back(node);
@@ -157,7 +157,7 @@ bool Quadtree::intersects(const PositionComponent& tl1, const PositionComponent&
     return !(tl1.getX() > br2.getX() || br1.getX() < tl2.getX() || tl1.getY() > br2.getY() || br1.getY() < tl2.getY() || tl1.getZ() != tl2.getZ() || br1.getZ() != br2.getZ());
 }
 
-bool Quadtree::inCircle(const PositionComponent& pos, const PositionComponent& center, float radius) {
+bool Quadtree::inCircle(const PositionComponent& pos, const PositionComponent& center, double radius) {
     //check if a position component is within a circular area defined by center and radius
     double distanceSquared = pow(pos.getX() - center.getX(), 2) + pow(pos.getY() - center.getY(), 2);
     return distanceSquared <= pow(radius, 2);

@@ -2,6 +2,7 @@
 // Created by Admin on 05.09.2023.
 //
 
+#include <iostream>
 #include "Ecs.h"
 #include "BoidSystem.h"
 
@@ -25,8 +26,9 @@ Ecs::~Ecs() {
 void Ecs::systems_init() {
     //init core systems
     //TODO: complete
-    auto cam = new Camera(PositionComponent(0, 0, 0));
-    graphicsSystem = new GraphicsSystem(cam);
+    auto* cam = new Camera({0, 0, 0});
+    graphicsSystem = new GraphicsSystem(0, cam);
+    positionSystem = new PositionSystem(1);
 }
 
 System * Ecs::getSystem(int id) {

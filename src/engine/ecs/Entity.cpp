@@ -6,9 +6,9 @@
 #include "Ecs.h"
 
 Entity::Entity(int id) : id(id), position({0,0,0}){
-    Ecs::shared_instance().entities.push_back(this);
+//    Ecs::shared_instance().entities.push_back(this);
 }
 
 Entity::Entity(int id, PositionComponent position) : id(id), position(position){
-    Ecs::shared_instance().entities.push_back(this);
+//    Ecs::shared_instance().entities.push_back(this);
 }

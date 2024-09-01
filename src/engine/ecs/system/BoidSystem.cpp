@@ -7,7 +7,7 @@
 
 BoidSystem::BoidSystem(int id) : System(id) {}
 
-// Iterates through Boids and applies the 3 flock rules and some biases
+//iterates through Boids and applies the 3 flock rules and some biases
 void BoidSystem::handleBoids(...) { //TODO: Make use of variable length method to include multiple biases
     //separation
 
@@ -18,13 +18,13 @@ void BoidSystem::handleBoids(...) { //TODO: Make use of variable length method t
     //additional Biases
 }
 
-// Creates {amount} boids with a random position and 0 velocity
+//creates {amount} boids with a random position and 0 velocity
 void BoidSystem::init(int amount) {
-    float x{};
-    float y{};
+    double x{};
+    double y{};
     std::random_device rd;
     std::mt19937 mt(rd());
-    std::uniform_real_distribution<float> dist(1.0, 10.0);
+    std::uniform_real_distribution<double> dist(1.0, 10.0);
     for (int i = 0; i < amount; i++) {
         x= dist(mt);
         y= dist(mt);
@@ -33,7 +33,7 @@ void BoidSystem::init(int amount) {
     }
 }
 
-void BoidSystem::initValues(float velocityModifier, float separationModifier, float alignmentModifier, float cohesionModifier){
+void BoidSystem::initValues(double velocityModifier, double separationModifier, double alignmentModifier, double cohesionModifier){
     this->velocityMod = velocityModifier;
     this->separationMod = separationModifier;
     this->alignmentMod = alignmentModifier;
@@ -42,16 +42,16 @@ void BoidSystem::initValues(float velocityModifier, float separationModifier, fl
 
 
 //Boid2D functions
-void BoidSystem::addVelocity(int boid2Did, float x, float y)
+void BoidSystem::addVelocity(int boid2Did, double x, double y)
 {
     this->boids[boid2Did]->rigidbody.velocity.x += x;
     this->boids[boid2Did]->rigidbody.velocity.x += x;
 }
 
-void BoidSystem::setViewRange(int boid2Did, float range) {
+void BoidSystem::setViewRange(int boid2Did, double range) {
     this->boids[boid2Did]->viewRange = range;
 }
 
-void BoidSystem::setNeighborRange(int boid2Did, float range) {
+void BoidSystem::setNeighborRange(int boid2Did, double range) {
     this->boids[boid2Did]->neighborRange = range;
 }

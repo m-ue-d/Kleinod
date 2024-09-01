@@ -12,7 +12,7 @@
 class PhysicsSystem : public System{
     std::vector<RigidbodyComponent*> rigidbodies;
     public:
-        float gravity = 0;
+        double gravity = 0;
         void doPhysics(); //PhysicsUpdate (collisions, velocity updates, dampening, weight)
 };
 

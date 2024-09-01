@@ -4,14 +4,16 @@
 
 #pragma once
 #include "PositionComponent.h"
+#include "Entity.h"
+#include "PositionSystem.h"
 
 //TODO: Implement a perspective Camera
-struct Camera{
+struct Camera : public Entity{
     public:
-        Camera(const PositionComponent& position);
-        ~Camera();
+        explicit Camera(const PositionComponent& position);
+        std::vector<Entity *> visibleEntities();    //TODO: FIX
 
     private:
-        PositionComponent position;
+        int fow{};
 };
 

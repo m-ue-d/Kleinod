@@ -11,15 +11,15 @@ class BoidSystem : public System{
     public:
         void init(int amount);
         void handleBoids(...);
-        void initValues(float velocityMod, float separationMod, float alignmentMod, float cohesionMod);
+        void initValues(double velocityMod, double separationMod, double alignmentMod, double cohesionMod);
         explicit BoidSystem(int id);
     private:
-        float velocityMod = 1.0f;
-        float separationMod = 1.0f;
-        float alignmentMod = 1.0f;
-        float cohesionMod = 1.0f;
+        double velocityMod = 1.0f;
+        double separationMod = 1.0f;
+        double alignmentMod = 1.0f;
+        double cohesionMod = 1.0f;
         std::vector<Boid2D*> boids;
-        void addVelocity(int boid2Did, float x, float y);
-        void setViewRange(int boid2Did, float range);
-        void setNeighborRange(int boid2Did, float range);
+        void addVelocity(int boid2Did, double x, double y);
+        void setViewRange(int boid2Did, double range);
+        void setNeighborRange(int boid2Did, double range);
 };

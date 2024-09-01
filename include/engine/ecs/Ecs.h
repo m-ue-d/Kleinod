@@ -25,6 +25,8 @@ class Ecs {
         System * getSystem(int id);
         Entity * getEntity(int id);
 
+        //TODO: functions addSystem(), addEntity()
+
         ~Ecs();
 
     private:

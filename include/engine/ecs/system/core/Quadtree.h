@@ -27,8 +27,8 @@ struct Quadtree{
         void remove(const PositionComponent& pos);
         Entity* get(const PositionComponent& p);
         bool inBounds(const PositionComponent& p);
-        std::vector<Entity*> getNeighbors(const PositionComponent& p, float radius) const;
-        void getNeighborsRecursive(PositionComponent p, float radius, std::vector<Entity*>& neighbors) const;
+        std::vector<Entity*> getNeighbors(const PositionComponent& p, double radius) const;
+        void getNeighborsRecursive(PositionComponent p, double radius, std::vector<Entity*>& neighbors) const;
         static bool intersects(const PositionComponent& tl1, const PositionComponent& br1, const PositionComponent& tl2, const PositionComponent& br2);
-        static bool inCircle(const PositionComponent& pos, const PositionComponent& center, float radius);
+        static bool inCircle(const PositionComponent& pos, const PositionComponent& center, double radius);
 };
