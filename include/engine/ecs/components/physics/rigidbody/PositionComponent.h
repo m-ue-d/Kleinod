@@ -21,4 +21,6 @@ struct PositionComponent {
         int z;
 };
 
+bool operator== (PositionComponent const& a, PositionComponent const& b);
+
 #endif //KLEINOD_POSITIONCOMPONENT_H

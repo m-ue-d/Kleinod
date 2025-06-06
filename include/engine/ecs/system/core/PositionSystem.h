@@ -3,19 +3,21 @@
 //
 
 #pragma once
-#include "Quadtree.h"
-#include "System.h"
 
-class PositionSystem : public System{
+#include <vector>
+#include "System.h"
+#include "Entity.h"
+
+class PositionSystem : public System {
     //TODO: Fully define & Implement
     public:
-    PositionSystem(int id);
+    explicit PositionSystem(int id);
 
     void addEntity(Entity* e);
-        void removeEntity(Entity* e);
-        void removeEntity(const PositionComponent& pos);
-        std::vector<Entity*> getNeighbors(const PositionComponent& positionComponent, double radius);
+    void removeEntity(Entity* e);
+    void removeEntity(const PositionComponent& pos);
+    std::vector<Entity*> getNeighbors(const PositionComponent& positionComponent, double radius);
 
     private:
-        Quadtree quadtree;
+        std::vector<Entity*> entities;
 };

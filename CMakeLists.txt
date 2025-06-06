@@ -14,7 +14,8 @@ include_directories(
         include/engine/ecs/system/core
         include/engine/ecs
         include/engine/editor
-        include/engine/graphics)
+        include/engine/graphics
+        include/engine/ecs/comparators)
 set(SOURCES
         include/engine/ecs/entities/Boid2D.h
         include/engine/ecs/components/physics/rigidbody/RigidbodyComponent.h
@@ -22,8 +23,6 @@ set(SOURCES
         src/engine/ecs/components/physics/rigidbody/RigidbodyComponent.cpp
         src/engine/ecs/components/physics/rigidbody/VelocityComponent.cpp
         src/engine/ecs/entities/Boid2D.cpp
-        include/engine/ecs/system/BoidSystem.h
-        src/engine/ecs/system/BoidSystem.cpp
         include/engine/ecs/Ecs.h
         include/engine/ecs/Entity.h
         src/engine/ecs/Entity.cpp
@@ -38,8 +37,6 @@ set(SOURCES
         include/engine/ecs/system/core/PhysicsSystem.h
         include/engine/ecs/components/graphics/Camera.h
         src/engine/ecs/system/core/PhysicsSystem.cpp
-        include/engine/ecs/system/core/Quadtree.h
-        src/engine/ecs/system/core/Quadtree.cpp
         include/engine/ecs/system/core/PositionSystem.h
         src/engine/ecs/system/core/GraphicsSystem.cpp
         src/engine/ecs/components/graphics/Camera.cpp
@@ -48,6 +45,8 @@ set(SOURCES
         include/game/game.h
         src/game/game.cpp
         src/engine/ecs/system/core/PositionSystem.cpp
+        include/engine/ecs/comparators/EntityPositionComparator.h
+        src/engine/ecs/comparators/EntityPositionComparator.cpp
 )
 
 add_executable(Kleinod main.cpp ${SOURCES})

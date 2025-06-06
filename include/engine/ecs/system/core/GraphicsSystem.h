@@ -13,7 +13,7 @@ class GraphicsSystem: public System{
         ~GraphicsSystem() override;
         bool init(const char* title, int width, int height, int framerate);
         void frameUpdate();
-        void renderBox(int x, int y, int width, int height);
+        void renderBox(int x, int y, int width, int height, SDL_Color color);
         Camera* getCamera();
 
     private:

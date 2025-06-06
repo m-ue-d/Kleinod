@@ -50,17 +50,16 @@ void GraphicsSystem::frameUpdate() {
     //render objects
     std::vector<Entity *> entities = camera->visibleEntities();
     for (Entity* entity : entities) {
-        std::cout << entity->id << " x:" << entity->position.getX() << " y:" << entity->position.getY() << std::endl;
-        renderBox((int)entity->position.getX() - 25, (int)entity->position.getY() - 25, 50, 50);
+        // std::cout << entity->id << " x:" << entity->position.getX() << " y:" << entity->position.getY() << std::endl;
+        renderBox((int)entity->position.getX() - 25, (int)entity->position.getY() - 25, 50, 50, { 255, 160, 0, 255 });
     }
 
     SDL_RenderPresent(renderer);
 }
 
-//test function
-void GraphicsSystem::renderBox(int x, int y, int width, int height) {
+void GraphicsSystem::renderBox(int x, int y, int width, int height, SDL_Color color) {
     // Set draw color to white
-    SDL_SetRenderDrawColor(renderer, 255, 177, 0, 255);
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 
     // Create a rectangle for the white box
     SDL_Rect box = { x, y, width, height };

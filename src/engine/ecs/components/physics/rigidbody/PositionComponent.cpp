@@ -17,3 +17,9 @@ PositionComponent::PositionComponent(double x, double y) {
 }
 
 PositionComponent::~PositionComponent() = default;
+
+bool operator== (PositionComponent const& a, PositionComponent const& b) {
+    return a.getY() == b.getY()
+        && a.getX() == b.getX()
+        && a.getZ() == b.getZ();
+}

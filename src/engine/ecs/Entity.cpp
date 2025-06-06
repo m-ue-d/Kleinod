@@ -12,3 +12,7 @@ Entity::Entity(int id) : id(id), position({0,0,0}){
 Entity::Entity(int id, PositionComponent position) : id(id), position(position){
 //    Ecs::shared_instance().entities.push_back(this);
 }
+
+bool operator== (Entity const& a, Entity const& b) {
+    return a.id == b.id;
+}

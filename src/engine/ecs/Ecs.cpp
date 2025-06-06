@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include "Ecs.h"
-#include "BoidSystem.h"
 
 Ecs::Ecs() {
     systems_init();
